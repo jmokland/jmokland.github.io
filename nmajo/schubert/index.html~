@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>The schubert package</title>
+</head>
+
+<body>
+<h1>The schubert package for Maple</h1>
+
+
+<p>
+This Maple package for computations with Chern classes in intersection
+rings was written by Sheldon Katz and Stein Arild Strømme from 1992
+and onwards, and
+has been revised and updated to reflect new versions of Maple by
+Jan-Magnus Økland.</p>
+
+<p>
+You may download source code and rudimentary documentation <a href="http://stromme.uib.no/schubert/schubert.tar">here</a>.
+</p>
+
+
+<p>However, this Maple package is no longer actively supported, and current
+efforts have moved from Maple to Macaulay2: <br>
+
+    D. Grayson, M. Stillman, D. Eisenbud, S.A.Strømme: <a href="http://www.math.uiuc.edu/Macaulay2/doc/Macaulay2-1.3.1/share/doc/Macaulay2/Schubert2/html/">"Schubert2"</a>,
+    port of schubert to <a href="http://www.math.uiuc.edu/Macaulay2/">Macaulay2</a>.
+</p>
+
+
+<hr>
+<address><a href="http://www.mi.uib.no/stromme/">Stein Arild Strømme</a></address>
+
+ 

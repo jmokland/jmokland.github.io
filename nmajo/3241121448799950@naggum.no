@@ -1,0 +1,61 @@
+https://groups.google.com/g/no.alt.frustrasjoner/c/LZ2u5PdBsyY/m/lcNn52fbgf0J
+
+From: Erik Naggum <erik@naggum.no>
+Newsgroups: no.alt.frustrasjoner
+Subject: Re: Utslippss?nad
+Date: 15 Sep 2002 23:30:48 +0000
+Organization: Naggum Software, Oslo, Norway
+Lines: 38
+Message-ID: <3241121448799950@naggum.no>
+References: <b057ouoct7h12ah4qdtea837rkhe5hkqkd@4ax.com> <3D83AEF1.2BD05015@stv.uio.no> <3241031058698632@naggum.no> <3D843016.5D6DFE72@stv.uio.no> <3241063455189165@naggum.no> <3D843A19.CC3045F4@stv.uio.no> <pan.2002.09.15.16.13.01.694946.1361@molden_dot_net.invalid> <3D84978C.97B86516@stv.uio.no> <pan.2002.09.15.16.32.29.299681.1361@molden_dot_net.invalid> <3D849DAC.28D6CDE4@stv.uio.no> <3241092479947769@naggum.no> <3D84ABD1.12A67A97@stv.uio.no> <qlb9ouorp1ogvgfrsae7o8t906ph18pr92@4ax.com> <3D84B720.1B7A145@stv.uio.no> <n0aofaz9lfc.fsf@tiamat.uio.no>
+NNTP-Posting-Host: tyrfing.ifi.uio.no
+Mime-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+X-Trace: maud.ifi.uio.no 1032132656 1741 129.240.64.16 (15 Sep 2002 23:30:56 GMT)
+X-Complaints-To: abuse@ifi.uio.no
+NNTP-Posting-Date: 15 Sep 2002 23:30:56 GMT
+Mail-Copies-To: never
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.2
+X-Received-Date: Mon, 16 Sep 2002 01:30:56 MET DST (news01.chello.no)
+
+
+* Nils Chr. Framstad
+| Endelig, behøver utviklerne _tjene_ penger? Hvis utvikleren er noen som har
+| bruk for applikasjonen, kan motivet være å _spare_ penger. Og penger spart
+| er penger tjent -- eller enda bedre hvis man er skattebetaler. Hvis man
+| attpåtil kan få gratis hjelp ved å offentliggjøre en tidlig versjon, så har
+| man spart enda mer.
+
+  Motivet bak hele IT-bransjen er drømmen om å spare penger, men dersom én
+  part sparer X mye penger på et system, kan han betale noe mindre enn X for
+  et slikt system og mitt grunnleggende estimat er inntil 10% av X.  (Dette
+  estimatet har jeg kommet frem til gjennom å ha jobbet i bransjen i snart 25
+  år, men jeg har ikke tenkt å forsvare det her.)  Dersom man skal utvikle
+  systemet selv, må man dersom man godtar dette estimatet spare 10 ganger så
+  mye selv.  Dette var svært ofte mulig for inntil noen få år siden og farver
+  ennå mange menneskers syn på verdien av software.  Imidlertid er det ikke
+  tilfelle nå.  Grunnen til at det f eks ikke holder med 50% av besparelsen i
+  kostnader er at man endrer organisasjonsstruktur når man overlater noe av
+  kontrollen over en del av virksomheten til software, og man trenger mer
+  kontrollfunksjoner enn tidligere.  (Og man får uansett ingen besparelser
+  uten endringer i hva mennesker gjør.)
+
+  Trivielt sett må den enkelte utvikler tjene penger, men netto resultat er
+  altså store besparelser som blir vanskeligere å oppnå når kostnadene ved
+  software-utvikling øker når besparelsene øker.  Denne vekselvirkningen kan
+  man få kontroll over dersom man utvikler ting selv og bruker mennesker man
+  likevel ville ha lønnet.  Dette har man da også forsøkt her i Norge med et
+  helt vanvittig tap.  Så et eller annet i denne teorien stemmer ikke.  Jeg
+  tror det er fordi de som gjør arbeidet i praksis vil ha hele besparelsen
+  selv slik at netto besparelse er ubetydelig.  Det kan være en lovmessighet
+  inne i bildet her, at visse ting skal ta så og så mye ressurser og dersom
+  man frigjør ressursene til én del av oppgaven, vil de styres over til andre.
+  Det faktum at man ønsker å ha alle i arbeide styrker denne siden av bildet.
+  
+-- 
+Erik Naggum, Oslo, Norway
+
+Act from reason, and failure makes you rethink and study harder.
+Act from faith, and failure makes you blame someone and push harder.
+

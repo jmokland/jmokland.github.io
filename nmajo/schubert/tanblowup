@@ -1,0 +1,46 @@
+> with(SF);
+[Par, add_basis, char2sf, conjugate, dominate, dual_basis, evalsf, hooks, 
+
+  itensor, jt_matrix, nextPar, omega, plethysm, scalar, sf2char, skew, stdeg, 
+
+  subPar, theta, toe, toh, top, tos, varset, zee]
+> with(schubert);
+[&-!, &-*, &/, &@, &^*, End, Grass, Hom, POINT, Proj, Symm, adams, 
+
+  additivebasis, betti, blowup, blowuppoints, bundle, bundlesection, chern, 
+
+  chi, codimension, compose, curve, determinant, dimension, division, down, 
+
+  dual, grass, grobnerbasis, insertedge, integral, integral2, koszul, 
+
+  lowershriek, lowerstar, monomials, monomialvalues, morphism, multiplepoint, 
+
+  normalbundle, normalform, o, porteous, porteous2, productvariety, proj, 
+
+  rank, schur, schurfunctor, schurfunctor2, segre, setvariety, sheaf, strip, 
+
+  symm, tangentbundle, tensor, todd, toddclass, toricvariety, totalspace, 
+
+  twist, up, upperstar, variety, verifyduality, wedge, where, whichcone, wproj
+
+  ]
+> tanblowup := proc (f) local n, lambda, codim, c, i, j, alpha, z, directimage, totalchern, class, classes; if `not`(assigned(f[source_][tangentbundle_])) then ERROR(` - source variety needs a tangent bundle`) end if; if `not`(assigned(f[target_][tangentbundle_])) then ERROR(` - target variety needs a tangent bundle`) end if; blowup(f); setvariety(f[source_]); Proj(n[f], dual(normalbundle(f)), lambda[f], all); totalspace(n[f], f[source_], tan); codim := -f[dimension_]; for i from 0 to codim do if dimension(f[source_]) < i then c[i] := 0 else c[i] := chern(i, normalbundle(f)) end if end do; i := 'i'; j := 'j'; sum(t^(codim-i)*c[codim-i], i = 0 .. codim)-(1-t*lambda[f])*(sum((1+t*lambda[f])^j*c[codim-j]*t^(codim-j), j = 0 .. codim)); expand(%); alpha[f] := expand(%/(t*lambda[f])); setvariety(f[source_]); chern(f[source_][tangentbundle_]); z[f] := expand(alpha[f]*%); morphism(jj[f], Tn[f], B || f, [f[upperstardata_], E || f = -lambda[f]]); directimage := 0; for i to nops(z[f]) do directimage := directimage+t*lowerstar(jj[f], op(z[f])[i]) end do; z[f] := expand(directimage); setvariety(f[target_]); z[f] := z[f]+chern(f[target_][tangentbundle_]); series(z[f], t, dimension(f[target_])+1); totalchern[f] := convert(%, polynom); for i to dimension(f[target_]) do class[f][i] := coeff(totalchern[f], t, i) end do; classes[f] := [seq(class[f][i], i = 1 .. dimension(f[target_]))]; setvariety(B || f); sheaf(dimension(f[target_]), classes[f]); B || f[tangentbundle_] := %; `currentvariety_ is ` || currentvariety_ || `, tangent bundle computed,
+> DIM is ` || DIM end proc;
+> grass(3, 5, c, tan);
+                       currentvariety_ is Gc, DIM is 6
+> F := dual(determinant(Qc));
+               1  2   2   1  3   3   1   4   4    1   5   5    1   6   6
+    1 - c1 t + - t  c1  - - t  c1  + -- t  c1  - --- t  c1  + --- t  c1 
+               2          6          24          120          720       
+> G := tensor(F, tensor(F, F));
+                 9  2   2   9  3   3   27  4   4   81  5   5   81  6   6
+    1 - 3 c1 t + - t  c1  - - t  c1  + -- t  c1  - -- t  c1  + -- t  c1 
+                 2          2          8           40          80       
+> bundlesection(A, %);
+                       currentvariety_ is A, DIM is 5
+> tanblowup(iA);
+              currentvariety_ is BiA, tangent bundle computed,
+
+                DIM is 6
+> chi(wedge(0, dual(tangentbundle(BiA))));
+                                      1

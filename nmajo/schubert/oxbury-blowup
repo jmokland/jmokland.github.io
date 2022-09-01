@@ -1,0 +1,277 @@
+From stromme@mi.uib.no  Mon Jan 14 16:00:19 2002
+Return-Path: <stromme@mi.uib.no>
+Received: from mons.uio.no (mons.uio.no [129.240.130.14])
+	by abel.mi.uib.no (8.11.2/8.11.2/SuSE Linux 8.11.1-0.5) with ESMTP id g0EF0HH07669;
+	Mon, 14 Jan 2002 16:00:17 +0100
+Received: from fhume.uio.no ([129.240.130.23])
+	by mons.uio.no with esmtp (Exim 2.12 #7)
+	id 16Q8av-0000Ru-00; Mon, 14 Jan 2002 16:00:17 +0100
+Received: from shspc24.uio.no ([129.240.124.44])
+	by fhume.uio.no with esmtp (Exim 2.12 #2)
+	id 16Q8av-0001tn-00; Mon, 14 Jan 2002 16:00:17 +0100
+Sender: stromme@shspc24.uio.no
+To: Jan-Magnus =?iso-8859-1?q?=D8kland?=  <Jan.Okland@mi.uib.no>
+Subject: [William Oxbury <w.m.oxbury@durham.ac.uk>] blowing up
+From: Stein Stromme <stromme@mi.uib.no>
+Date: 14 Jan 2002 16:00:16 +0100
+Message-ID: <m3ofjxf05b.fsf@shspc24.uio.no>
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+X-AntiVirus: scanned for viruses by AMaViS 0.2.1 (http://amavis.org/)
+Status: RO
+Content-Length: 6548
+Lines: 250
+
+Bill Oxbury har en prosedyre for tangentbunt til oppblåsning som vi
+bør kikke på å forstå!
+
+SA
+
+====================================================================
+
+-------------------- Start of forwarded message --------------------
+X-From-Line: w.m.oxbury@durham.ac.uk  Mon Jan 14 14:53:26 2002
+Return-Path: <w.m.oxbury@durham.ac.uk>
+Received: from hermes.dur.ac.uk (hermes.dur.ac.uk [129.234.4.9])
+	by abel.mi.uib.no (8.11.2/8.11.2/SuSE Linux 8.11.1-0.5) with ESMTP id g0EEsLH06580
+	for <stromme@mi.uib.no>; Mon, 14 Jan 2002 15:54:21 +0100
+Received: from euclid (euclid.dur.ac.uk [129.234.21.53])
+	by hermes.dur.ac.uk (8.11.1/8.11.1) with ESMTP id g0EErQr08987
+	for <stromme@mi.uib.no>; Mon, 14 Jan 2002 14:53:26 GMT
+Received: from durham.ac.uk by euclid id <g0EErQG12099@euclid>; Mon, 14 Jan 2002 14:53:26 GMT
+Sender: dma0wmo@durham.ac.uk
+Message-ID: <3C42F0E6.D165B464@durham.ac.uk>
+Date: Mon, 14 Jan 2002 14:53:26 +0000
+From: William Oxbury <w.m.oxbury@durham.ac.uk>
+X-Mailer: Mozilla 4.77 [en] (X11; U; Linux 2.4.9-12 i686)
+X-Accept-Language: en
+To: "Stein A. Strømme" <stromme@mi.uib.no>
+Subject: blowing up
+X-MailScanner: Found to be clean
+X-AntiVirus: scanned for viruses by AMaViS 0.2.1 (http://amavis.org/)
+X-UIDL: fnn"!?h*!!Kh_!!j)<!!
+X-Content-Length: 4908
+Lines: 210
+Xref: shspc24.uio.no ubehandlet:152
+
+Sorry! Here is the maple text.
+Bill.
+
+
+# Tangent bundle of a blowup
+#
+
+> with(schubert):
+
+# The computation
+
+# Here's the procedure, using Fulton p. 300. The argument is a morphism
+# between varieties,
+# both of which must have their tangent bundles assigned.
+
+> tanblowup:= proc(f)
+>
+> local n, lambda, codim, c, i, j, alpha, z,
+> directimage, totalchern, class, classes;
+>
+> if not(assigned(f[source_][tangentbundle_])) then
+>     ERROR(` - source variety needs a tangent bundle`)
+>    end if;
+>
+> if not(assigned(f[target_][tangentbundle_])) then
+>     ERROR(` - target variety needs a tangent bundle`)
+>    end if;
+>
+> blowup(f):
+>
+> ########## FIRST COMPUTE THE PRODUCT alpha*chern
+> ########## INSIDE j_*
+>
+> setvariety(f[source_]):
+> Proj(n[f],dual(normalbundle(f)),
+> lambda[f],all):
+> totalspace(n[f],f[source_],tan):
+>
+> codim:=-f[dimension_]:
+> for i from 0 to codim do
+> if i>dimension(f[source_]) then c[i]:=0 else
+> c[i]:= chern(i,normalbundle(f)) fi od:
+> i:='i':j:='j':
+> sum( t^(codim-i)*c[codim-i] , i= 0 .. codim) -
+>         (1 - t*lambda[f])*sum((1 +
+> t*lambda[f])^j*c[codim-j]*t^(codim-j)
+>         ,j= 0  .. codim):
+> expand(%):
+> alpha[f]:= expand(% / (lambda[f]*t)):
+> setvariety(f[source_]):
+> chern(f[source_][tangentbundle_]):
+> z[f]:=expand(alpha[f] * %):
+>
+> ########## THEN EVALUATE j_*
+>
+> morphism(jj[f],
+>          Tn[f],
+>          B||f,
+>          [f[upperstardata_],E||f=-lambda[f]]):
+> directimage:=0:
+> for i from 1 to nops(z[f]) do
+> directimage:=directimage + t*lowerstar(jj[f],op(z[f])[i])
+> od:
+> z[f]:=expand(directimage):
+>
+> ########## FINALLY READ OFF THE CHERN CLASSES
+>
+> setvariety(f[target_]):
+> z[f]:=z[f]+chern(f[target_][tangentbundle_]):
+> series(z[f],t,dimension(f[target_])+1):
+> totalchern[f]:= convert(%,polynom):
+> for i from 1 to dimension(f[target_]) do class[f][i] :=
+> coeff(totalchern[f],t,i) od:
+> classes[f]:= [seq(class[f][i],i=1..dimension(f[target_]))]:
+> setvariety(B||f);
+> sheaf(dimension(f[target_]),classes[f]):
+> B||f[tangentbundle_]:=%:
+>
+> `currentvariety_ is `||currentvariety_||`, tangent bundle computed,
+> DIM is `||DIM
+>
+> end:
+>
+
+
+# Examples
+
+
+# Blowup of a point
+> proj(2,h,tan):
+> morphism(f,POINT,Ph):
+> tanblowup(f);
+
+       currentvariety_ is Bf, tangent bundle computed, DIM is 2
+
+> chern(Bf[tangentbundle_]);
+
+                                            2  2
+                     1 + (-Ef + 3 h) t + 4 h  t
+
+> chi(o(2*h-Ef));
+
+                                  5
+
+# Blowup of P^3 along a line
+> proj(1,h):
+> proj(3,H):
+> morphism(l,Ph,PH,[H=h]):
+> tanblowup(l);
+Error, (in tanblowup)  - source variety needs a tangent bundle
+
+# Try again -
+> proj(1,h,tan):
+> proj(3,H,tan):
+> morphism(l,Ph,PH,[H=h]):
+> tanblowup(l);
+
+       currentvariety_ is Bl, tangent bundle computed, DIM is 3
+
+> chern(Bl[tangentbundle_]);
+
+                                  2            2      3  3
+           1 + (4 H - El) t + (7 H  - 4 H El) t  + 6 H  t
+
+> chi(o(2*H-El));
+
+                                  7
+
+# Space curve of genus g and degree d
+> curve(C,g,p):
+> proj(3,H,all):
+> morphism(i,C,PH,[H=d*p]):
+> tanblowup(i);
+
+       currentvariety_ is Bi, tangent bundle computed, DIM is 3
+
+> chern(Bi[tangentbundle_]);
+
+                          2               2   2       3      3     3
+  1 + (-Ei + 4 H) t + (6 H  - 4 H Ei + d H ) t  + (6 H  - 2 H  g) t
+
+> chi(o(2*H-Ei));
+
+                             -2 d + 9 + g
+
+# Here's the Euler characteristic:
+> integral(chern(3,Bi[tangentbundle_]));
+
+                               6 - 2 g
+
+# Blowup of the Veronese surface
+> proj(2,h,all):
+> proj(5,H,all):
+> morphism(f,Ph,PH,[H=2*h]):
+> tanblowup(f);
+
+       currentvariety_ is Bf, tangent bundle computed, DIM is 5
+
+> integral((6*H-2*Ef)^5);
+
+                                 3264
+
+> chern(Bf[tangentbundle_]);
+
+                            2               2
+  1 + (6 H - 2 Ef) t + (15 H  - 15/2 H Ef) t
+
+                    2              2       3   3
+         + (- 93/4 H  Ef + 9/2 H Ef  + 28 H ) t
+
+                  2   2       4   4       5  5
+         + (27/4 H  Ef  + 27 H ) t  + 12 H  t
+
+#  --- which we can see is correct at each end.
+# Bicanonical curve of genus 3
+> curve(C,3,p):
+> proj(5,H,all):
+> morphism(a,C,PH,[H=8*p]):
+> tanblowup(a);
+
+       currentvariety_ is Ba, tangent bundle computed, DIM is 5
+
+# The Chern class of the blowup is:
+> chern(Ba[tangentbundle_]);
+
+                            2                   2   2
+  1 + (6 H - 3 Ea) t + (2 Ea  - 23/2 H Ea + 15 H ) t
+
+                3       3       2   3               3       4   4
+         + (2 Ea  + 20 H  - H Ea ) t  + (- 15/2 H Ea  + 39 H ) t
+
+              5  5
+         - 6 H  t
+
+# Quadrics through the curve map P^5 birational to a hyperplane section
+# of the Coble quartic ---
+# that is, to a quartic in P^6:
+> `degree`=integral((2*H-Ea)^5);
+> `chi`=chi(o(2*H-Ea));
+
+                              degree = 4
+
+
+                               chi = 7
+
+>
+
+
+
+
+
+-------------------- End of forwarded message --------------------
+
+-- 
+Stein Arild Strømme                     Tel: (+47) 2212 2521
+Center for Advanced Study               Fax: (+47) 2212 2501
+Drammensveien 78                  <mailto:stromme@mi.uib.no>
+N-0271 Oslo, Norway          <http://www.mi.uib.no/~stromme>  
+

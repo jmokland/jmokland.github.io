@@ -1,0 +1,37 @@
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<html>
+  <head>
+<title>Code</title>
+</head>
+<body>
+<h1>Code</h1>
+
+<ul>
+<li><a href="http://folk.uib.no/nmasr/schubert/">schubert</a></li>
+</ul>
+
+
+<p>
+<h2>&sigma;<sub>2</sub><sup>2k</sup> ∩ [grass(4,4+k,&sigma;)]</h2>
+<a href="http://calvino.polito.it/~gatto/public/English/research/SCGA/cgscodes.htm">Letterio Gatto's code</a> in terms of degrees of schubert varieties.</p>
+
+For comparison: schubert in maple 
+/
+scubert2 in Macaulay2
+/
+In Macaulay2 without the overhead of the whole of schubert2
+/
+
+Todo: Implement Gatto's ideas as a new engine for schubert.
+
+<p>ELMS r=10, 11, 12</p>
+
+
+<img src="castelnuovo.DGH.H=1.jpg">
+<img src="castelnuovo.DGH.G=1.jpg">
+<hr>
+<address>
+<a href="mailto:jmokland@math.uib.no">Jan-Magnus Økland</a>
+</address>
+</body>
+</html>
