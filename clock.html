@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One-handed clock &mdash; hyperbolic-map</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="https://github.com/jpivarski/hyperbolic-map">&larr; back to GitHub</a></nav>
+
+<h1>One-handed clock</h1>
+
+<p>This clock only has—and only needs—one hand. The 12 hours, 720 minutes, and 43,200 seconds are all marked on the clock face with plenty of room for their labels. You just need to scroll out to them to find them.</p>
+
+<div id="map" class="fill"></div>
+
+<h2>How this is drawn</h2>
+
+<p>The tick marks and labels on the clock face are all static drawables. The clock's hand is defined dynamically and updated every second.</p>
+
+<p>See the code in <a href="https://github.com/jpivarski/hyperbolic-map/blob/main/docs/clock.html">docs/clock.html</a>.</p>
+
+<script src="file:///c:/Users/nmajo/Downloads/hyperbolic-map.iife.js"></script>
+<script type="module">
+import { loadDrawables, errorBox } from "file:///c:/Users/nmajo/Downloads/common.js";
+import { CLOCK_HANDS } from "file:///c:/Users/nmajo/Downloads/clock-hands.js";
+
+try {
+  const doc = await loadDrawables("clock.json");
+
+  const viewport = new HyperbolicMap.HyperbolicViewport({
+    container: "#map",
+    aspectRatio: 1,
+    autoResize: true,
+    data: doc,
+    zoom: 0.95,
+    minZoom: 0.95,
+    maxZoom: 0.95,
+    allowZoom: false,
+    interactRadius: 0.98,
+    pageBackground: "#ffffff",
+  });
+
+  viewport.addSource("hands", { version: 1, coordinates: "local", drawables: CLOCK_HANDS });
+
+  // One timer, cleared on destroy. The hands rotate about the origin, and a Euclidean rotation of
+  // local coordinates IS the hyperbolic rotation isometry, so this is exact rather than approximate.
+  function tick() {
+    const now = new Date();
+    let hours = now.getHours() % 12;
+    const fraction = hours / 12 + now.getMinutes() / 720 + now.getSeconds() / 43200;
+    viewport.setSourceTransform("hands", HyperbolicMap.Isom.rotation(-2 * Math.PI * fraction));
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+  window.addEventListener("beforeunload", () => clearInterval(timer));
+
+  window.viewport = viewport;
+  window.clockTimer = timer;
+} catch (err) {
+  errorBox(err);
+}
+</script>
+</body>
+</html>
