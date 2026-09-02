@@ -21,10 +21,10 @@
 
 <p>See the code in <a href="https://github.com/jpivarski/hyperbolic-map/blob/main/docs/clock.html">docs/clock.html</a>.</p>
 
-<script src="file:///c:/Users/nmajo/Downloads/hyperbolic-map.iife.js"></script>
+<script src="./hyperbolic-map.iife.js"></script>
 <script type="module">
-import { loadDrawables, errorBox } from "file:///c:/Users/nmajo/Downloads/common.js";
-import { CLOCK_HANDS } from "file:///c:/Users/nmajo/Downloads/clock-hands.js";
+import { loadDrawables, errorBox } from "./common.js";
+import { CLOCK_HANDS } from "./clock-hands.js";
 
 try {
   const doc = await loadDrawables("clock.json");
